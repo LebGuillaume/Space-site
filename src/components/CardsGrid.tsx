@@ -1,21 +1,34 @@
-import type { News } from "@/utils/types";
-import React, { type ReactNode } from "react";
+import type {HubbleImage, HubbleImageResponse, News, NewsResponse} from "@/utils/types";
+import {type ReactNode} from "react";
 import NewsPageCards from "./NewsPageCards";
+import {HubbleCard} from "@/components/index.ts";
 
 const CardsGrid = ({
-  objects,
-  mode,
-}: {
-  objects: News[];
-  mode: string;
+                       objects,
+                       mode,
+                   }: {
+    objects: NewsResponse | HubbleImageResponse;
+    mode: string;
 }): ReactNode => {
-  return (
-    <div className="grid grid-cols-1 gap-y-4 auto-rows-[600px] lg:auto-rows-[300px]">
-      {objects.map((item, index) => {
-        return <NewsPageCards news={item} key={index} />;
-      })}
-    </div>
-  );
+    const results = Array.isArray(objects?.results) ? objects.results : [];
+    if (mode === "hubble-page") {
+        return (
+            <div
+                className='grid mb-16 gap-2 auto-rows-fr grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+                {results.map((item, index) => (
+                    <HubbleCard image={item as HubbleImage} key={index}/>
+                ))}</div>
+        )
+    } else if (mode === "news-page") {
+        return (
+            <div className="grid grid-cols-1 gap-y-4 auto-rows-[600px] lg:auto-rows-[300px]">
+                {results.map((item, index) => {
+                    return <NewsPageCards news={item as News} key={index}/>;
+                })}
+            </div>
+        );
+    }
+
 };
 
 export default CardsGrid;

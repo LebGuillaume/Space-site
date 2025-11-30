@@ -1,16 +1,17 @@
 import type { News } from "@/utils/types";
 import { CircleArrowRight } from "lucide-react";
-import React from "react";
+
 import { Link } from "react-router-dom";
 
 const NewsPageCards = ({ news }: { news: News }) => {
   const { url, image_url, title, published_at, news_site, summary } = news;
 
   return (
-    <div className="">
-      <div className="">
+    <div className="test grid grid-cols-1 lg-grid-cols-4">
+      <div className="p2 overflow-hidden lg:col-span-1 h-[300px] md:h-[400px] lg:h-full">
         <Link to={url} target="_blank">
           <img
+              className="h-full w-full object-cover"
             src={image_url}
             onError={(e) => {
               // si l'image renvoie 401 / 403 / 404 / ORB → fallback
@@ -21,20 +22,20 @@ const NewsPageCards = ({ news }: { news: News }) => {
         </Link>
       </div>
       <div className="">
-        <p>{title}</p>
+        <p className="text-xl font-bold">{title}</p>
         <p>{published_at.split("T")[0]}</p>
         <p>
           <span>{news_site}</span>
           <span>|</span>
-          <span>Read from source</span>
-          <Link to={url} target="_blank">
+          <span className='flex items-center'>Read from source <Link to={url} target="_blank">
             <CircleArrowRight
-              color="var(--clr-violet)"
-              className="hover:scale-150 transition-all"
+                color="var(--clr-violet)"
+                className="hover:scale-150 transition-all"
             />
-          </Link>
+          </Link></span>
+
         </p>
-        <p>{summary}</p>
+        <p className='mt-4'>{summary}</p>
       </div>
     </div>
   );
