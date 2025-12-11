@@ -58,3 +58,55 @@ export type HubbleImageResponseWithParams = {
     response: HubbleImageResponse,
     params: FiltersParams
 }
+
+export type ApodType = {
+    copyright: string,
+    "date": string,
+    "explanation": string,
+    "hdurl": string,
+    "media_type": string,
+    "service_version": string,
+    "title": string,
+    "url": string
+
+}
+export type WebbImage = {
+    "id": string
+    "observation_id": string
+    "program": string
+    "details": {
+        "mission": string
+        "instruments": [
+            {
+                "instrument": string
+            },
+            {
+                "instrument": string
+            },
+            {
+                "instrument": string
+            },
+            {
+                "instrument": string
+            },
+            {
+                "instrument": string
+            }
+        ],
+        "suffix": string,
+        "description": string
+    },
+    "file_type": string,
+    "thumbnail": string,
+    "location": string
+}
+export type WebbImagesResponse = {
+    "statusCode": number,
+    body: WebbImage[],
+    error: string;
+
+}
+export type WebNewsAndImagery = {
+    news: News[] | null,
+    imagery: WebbImage[] | null
+}

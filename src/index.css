@@ -16,6 +16,7 @@ body {
 
 :root {
     --clr-violet: #86198f;
+    --clr-violet-light: #a245ac;
 }
 
 @import "tailwindcss";
