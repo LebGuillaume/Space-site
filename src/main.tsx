@@ -7,6 +7,7 @@ import { ErrorElement } from "./components";
 import { hubblePageLoader } from "@/pages/Hubble.tsx";
 import { apodPageLoader } from "@/pages/Apod.tsx";
 import { webbPageLoader } from "./pages/Webb";
+import { spacexPageLoader } from "./pages/SpaceX";
 
 const router = createBrowserRouter([
     {
@@ -26,7 +27,12 @@ const router = createBrowserRouter([
                 loader: webbPageLoader,
                 errorElement: <ErrorElement />,
             },
-            { path: "spacex", element: <SpaceX /> },
+            {
+                path: "spacex",
+                element: <SpaceX />,
+                loader: spacexPageLoader,
+                errorElement: <ErrorElement />,
+            },
             {
                 path: "apod",
                 element: <Apod />,

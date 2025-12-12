@@ -13,7 +13,6 @@ import type {
     WebbImagesResponse,
     WebNewsAndImagery,
 } from "@/utils/types.ts";
-import { use } from "react";
 import { useLoaderData, type LoaderFunction } from "react-router-dom";
 
 const newsParams = {
@@ -34,6 +33,7 @@ export const newsFetch = async (): Promise<News[] | null> => {
         return response.data.results;
     } catch (error) {
         console.log(error);
+        return null;
     }
 };
 export const imageryFetch = async (): Promise<WebbImage[] | null> => {
