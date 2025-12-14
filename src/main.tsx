@@ -1,7 +1,16 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import { Apod, HomeLayout, Hubble, Landing, News, SpaceX, Webb } from "./pages";
+import {
+    Apod,
+    HomeLayout,
+    Hubble,
+    Landing,
+    News,
+    SingleHubble,
+    SpaceX,
+    Webb,
+} from "./pages";
 import { newsPageLoader } from "./pages/News";
 import { ErrorElement } from "./components";
 import { hubblePageLoader } from "@/pages/Hubble.tsx";
@@ -9,6 +18,7 @@ import { apodPageLoader } from "@/pages/Apod.tsx";
 import { webbPageLoader } from "./pages/Webb";
 import { spacexPageLoader } from "./pages/SpaceX";
 import { landingPageLoader } from "./pages/Landing";
+import { singlehubblePageLoader } from "./pages/SingleHubble";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +56,11 @@ const router = createBrowserRouter([
                 errorElement: <ErrorElement />,
             },
             { path: "hubble", element: <Hubble />, loader: hubblePageLoader },
+            {
+                path: "hubble/:id",
+                element: <SingleHubble />,
+                loader: singlehubblePageLoader,
+            },
         ],
     },
 ]);

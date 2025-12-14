@@ -12,7 +12,7 @@ const ApodLauncher = () => {
 
     return (
         <article className="w-full my-6">
-            <div className="align-element grid items-center gap-8 md:grid-cols-2">
+            <div className="align-element grid items-center gap-8 lg:grid-cols-2">
                 <div className="space-y-2">
                     <p className="text-sm uppercase tracking-wide text-gray-500">
                         Today

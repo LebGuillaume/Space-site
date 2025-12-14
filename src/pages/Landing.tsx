@@ -27,7 +27,7 @@ import type {
     NewsResponse,
 } from "@/utils/types";
 import { Space } from "lucide-react";
-import { useLoaderData, type LoaderFunction } from "react-router-dom";
+import { type LoaderFunction } from "react-router-dom";
 
 export const newsFetch = async (): Promise<News[] | null> => {
     try {

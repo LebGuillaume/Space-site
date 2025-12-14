@@ -4,7 +4,7 @@ import type {
     HubbleImageResponse,
     HubbleImageResponseWithParams,
 } from "@/utils/types.ts";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, type LoaderFunction } from "react-router-dom";
 import { Filters, Overview, Title } from "@/components";
 import CardsGrid from "@/components/CardsGrid.tsx";
 
@@ -13,7 +13,7 @@ const hubbleParams = {
     limit: 24,
 };
 
-export const hubblePageLoader = async ({
+export const hubblePageLoader: LoaderFunction = async ({
     request,
 }): Promise<HubbleImageResponseWithParams | null> => {
     try {
@@ -30,6 +30,8 @@ export const hubblePageLoader = async ({
         );
         return { response: response.data, params };
     } catch (error) {
+        console.log(error);
+
         return null;
     }
 };

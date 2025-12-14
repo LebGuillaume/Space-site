@@ -40,6 +40,7 @@ const News = () => {
     const { response, params } = data;
     return (
         <section className="section test">
+            <Filters term={params.term} mode="news" key={params.term}></Filters>
             <Title text="All News" />
 
             <Overview objects={data} />
