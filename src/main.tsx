@@ -8,13 +8,19 @@ import { hubblePageLoader } from "@/pages/Hubble.tsx";
 import { apodPageLoader } from "@/pages/Apod.tsx";
 import { webbPageLoader } from "./pages/Webb";
 import { spacexPageLoader } from "./pages/SpaceX";
+import { landingPageLoader } from "./pages/Landing";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <HomeLayout />,
         children: [
-            { index: true, element: <Landing /> },
+            {
+                index: true,
+                element: <Landing />,
+                loader: landingPageLoader,
+                errorElement: <ErrorElement />,
+            },
             {
                 path: "news",
                 element: <News />,

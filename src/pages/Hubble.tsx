@@ -47,7 +47,7 @@ const Hubble = () => {
                 key={params.term}
             ></Filters>
             <Overview objects={response} />
-            <CardsGrid objects={response.results} mode="hubble-page" />
+            <CardsGrid objects={response.results} mode="hubble" />
         </section>
     );
 };

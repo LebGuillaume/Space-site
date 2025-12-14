@@ -166,4 +166,27 @@ body {
         transform: translate(-2px, -2px);
         box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.75);
     }
+    .slider-btn{
+        padding: 0.5rem 1rem;
+        border: solid 1px white;
+        background-color: transparent;
+        transition: all 0.2s ease-out;
+        background : linear-gradient(to top, white 50%, transparent 50%);
+        background-size: 100% 200%;
+        background-position: top;
+    }
+    .slider-btn:hover{
+        color: black;
+        background-position: bottom;
+    }
+    .spacex{
+        background-image: url('./assets/imgs/pexels-spacex-23769.jpg');
+        background-position:  50% 50%;
+        background-size: cover;
+    }
+    .webb{
+        background-image: url('./assets/imgs/telescopic-mirror-74034_1920.jpg');
+        background-position:  50% 50%;
+        background-size: cover;
+    }
 }

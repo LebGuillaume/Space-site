@@ -113,6 +113,7 @@ export type WebNewsAndImagery = {
 export type Rocket = {
     "id": number,
   "active": boolean,
+  "flickr_images": string[],
   "stages": number,
   "boosters": number,
   "cost_per_launch": number,
@@ -153,7 +154,7 @@ export type Rocket = {
     }
   ],
   "first_stage": {
-    "reusable": true,
+    "reusable": boolean,
     "engines": number,
     "fuel_amount_tons": number,
     "burn_time_sec": number,
@@ -168,6 +169,7 @@ export type Rocket = {
   },
   "second_stage": {
     "engines": number,
+    "reusable": boolean,
     "fuel_amount_tons": number,
     "burn_time_sec": number,
     "thrust": {
@@ -217,3 +219,12 @@ export type Rocket = {
   "rocket_name": string,
   "rocket_type": string
 }
+export type SpaceXNewsAndRockets = {
+    news: News[] | null;
+    rockets: (Rocket | null)[] | null;
+};
+export type LandingPageNewsApodHubbles = {
+    news: News[] | null;
+    apod: ApodType | null;
+    hubbles: HubbleImage[] | null;
+};
