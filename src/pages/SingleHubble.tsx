@@ -32,6 +32,7 @@ export const singlehubblePageLoader: LoaderFunction = async ({
         );
         return response.data.results[0] ?? null;
     } catch (error) {
+        /* eslint-disable-next-line no-console */
         console.log(error);
         return null;
     }

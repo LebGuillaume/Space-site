@@ -5,8 +5,9 @@ import type {
     HubbleImageResponseWithParams,
 } from "@/utils/types.ts";
 import { useLoaderData, type LoaderFunction } from "react-router-dom";
-import { Filters, Overview, Title } from "@/components";
+import { Filters, Overview, PaginationContainer, Title } from "@/components";
 import CardsGrid from "@/components/CardsGrid.tsx";
+import { objectsPerPage } from "@/utils/constants";
 
 const hubbleParams = {
     order_by: "photo_date_taken desc",
@@ -22,6 +23,10 @@ export const hubblePageLoader: LoaderFunction = async ({
         ]);
         const formattedParams = {
             where: params.term ? `photo_title like "${params.term}"` : "",
+            offset: params.page
+                ? objectsPerPage * (parseFloat(params.page) - 1)
+                : 0,
+
             ...hubbleParams,
         };
         const response = await datastroCustomFetch.get<HubbleImageResponse>(
@@ -30,8 +35,8 @@ export const hubblePageLoader: LoaderFunction = async ({
         );
         return { response: response.data, params };
     } catch (error) {
+        /* eslint-disable-next-line no-console */
         console.log(error);
-
         return null;
     }
 };
@@ -39,7 +44,6 @@ export const hubblePageLoader: LoaderFunction = async ({
 const Hubble = () => {
     const data = useLoaderData() as HubbleImageResponseWithParams;
     const { response, params } = data;
-    console.log(data);
     return (
         <section className="section">
             <Title text="Hubble telescop photos" />
@@ -50,6 +54,7 @@ const Hubble = () => {
             ></Filters>
             <Overview objects={response} />
             <CardsGrid objects={response.results} mode="hubble" />
+            <PaginationContainer />
         </section>
     );
 };

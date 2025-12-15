@@ -65,7 +65,7 @@ const RocketCard = ({ rocket, index }: { rocket: Rocket; index: number }) => {
                 </p>
                 <p className="mt-2">Payloads:</p>
                 {payload_weights.map((payload) => (
-                    <p>
+                    <p key={payload.name}>
                         {payload.name} : <span>{payload.kg}</span> kgs
                     </p>
                 ))}

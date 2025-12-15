@@ -26,7 +26,6 @@ import type {
     News,
     NewsResponse,
 } from "@/utils/types";
-import { Space } from "lucide-react";
 import { type LoaderFunction } from "react-router-dom";
 
 export const newsFetch = async (): Promise<News[] | null> => {
@@ -36,6 +35,7 @@ export const newsFetch = async (): Promise<News[] | null> => {
         });
         return response.data.results;
     } catch (error) {
+        /* eslint-disable-next-line no-console */
         console.log(error);
         return null;
     }
@@ -45,6 +45,7 @@ export const apodFetch = async (): Promise<ApodType | null> => {
         const response = await nasaCustomFetch<ApodType>("");
         return response.data;
     } catch (error) {
+        /* eslint-disable-next-line no-console */
         console.log(error);
         return null;
     }
@@ -56,6 +57,7 @@ export const hubblesFetch = async (): Promise<HubbleImage[] | null> => {
         });
         return response.data.results;
     } catch (error) {
+        /* eslint-disable-next-line no-console */
         console.log(error);
         return null;
     }
@@ -71,6 +73,7 @@ export const landingPageLoader: LoaderFunction =
             ]);
             return { news, apod, hubbles };
         } catch (error) {
+            /* eslint-disable-next-line no-console */
             console.log(error);
             return null;
         }

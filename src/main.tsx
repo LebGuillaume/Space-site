@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import {
     Apod,
+    ErrorMain,
     HomeLayout,
     Hubble,
     Landing,
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <HomeLayout />,
+        errorElement: <ErrorMain />,
         children: [
             {
                 index: true,

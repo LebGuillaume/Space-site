@@ -1,4 +1,11 @@
-import { CardsGrid, Filters, Overview, Title } from "@/components";
+import {
+    CardsGrid,
+    Filters,
+    Overview,
+    PaginationContainer,
+    Title,
+} from "@/components";
+import { objectsPerPage } from "@/utils/constants";
 import { snapiCustomFetch } from "@/utils/customFetch";
 import type {
     FiltersParams,
@@ -19,9 +26,12 @@ export const newsPageLoader: LoaderFunction = async ({
         const params: FiltersParams = Object.fromEntries([
             ...new URL(request.url).searchParams.entries(),
         ]);
-        console.log(params);
+
         const formattedParams = {
             search: params.term ? params.term : "",
+            offset: params.page
+                ? objectsPerPage * (parseFloat(params.page) - 1)
+                : 0,
             ...newsParams,
         };
         const response = await snapiCustomFetch.get<NewsResponse>("", {
@@ -29,6 +39,7 @@ export const newsPageLoader: LoaderFunction = async ({
         });
         return { response: response.data, params };
     } catch (error) {
+        /* eslint-disable-next-line no-console */
         console.log(error);
         return null;
     }
@@ -39,12 +50,13 @@ const News = () => {
 
     const { response, params } = data;
     return (
-        <section className="section test">
+        <section className="section">
             <Filters term={params.term} mode="news" key={params.term}></Filters>
             <Title text="All News" />
 
             <Overview objects={data} />
             <CardsGrid objects={response.results} mode="news-page" />
+            <PaginationContainer />
         </section>
     );
 };

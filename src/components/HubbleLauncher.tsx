@@ -9,7 +9,6 @@ const HubbleLauncher = () => {
     if (!hubbles) {
         return <div>No Hubble data available</div>;
     }
-    console.log(hubbles);
 
     return (
         <article className="align-item w-full my-6">

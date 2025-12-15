@@ -6,7 +6,6 @@ import type {
     Rocket,
     SpaceXNewsAndRockets,
 } from "@/utils/types";
-import { use } from "react";
 import { useLoaderData, type LoaderFunction } from "react-router-dom";
 
 const newsParams = {
@@ -20,13 +19,14 @@ const starshipURL = "/rockets/starship"; // Starship
 const falcon9URL = "/rockets/falcon9"; // Falcon 9
 const falconHeavyURL = "/rockets/falconheavy"; // Falcon Heavy
 const rocketURLs = [starshipURL, falcon9URL, falconHeavyURL];
-export const newsFetch = async (): Promise<News[]> => {
+export const newsFetch = async (): Promise<News[] | null> => {
     try {
         const response = await snapiCustomFetch.get<NewsResponse>("", {
             params: newsParams,
         });
         return response.data.results;
     } catch (error) {
+        /* eslint-disable-next-line no-console */
         console.log(error);
         return null;
     }
@@ -38,6 +38,7 @@ export const rocketsFetch = async (): Promise<(Rocket | null)[] | null> => {
         );
         return response;
     } catch (error) {
+        /* eslint-disable-next-line no-console */
         console.log(error);
         return null;
     }
@@ -49,6 +50,7 @@ export const rocketFetch = async (
         const response = await spaceXCustomFetch.get<Rocket>(rocketURL);
         return response.data;
     } catch (error) {
+        /* eslint-disable-next-line no-console */
         console.log(error);
         return null;
     }
@@ -63,6 +65,7 @@ export const spacexPageLoader: LoaderFunction =
             ]);
             return { news, rockets };
         } catch (error) {
+            /* eslint-disable-next-line no-console */
             console.log(error);
             return null;
         }

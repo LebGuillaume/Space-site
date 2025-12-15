@@ -1,17 +1,20 @@
-import { Footer, Header, Navbar } from '@/components'
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Footer, Header, Navbar } from "@/components";
+import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 
 const HomeLayout = () => {
-  return (
-<>
-    <Header/>
-    <Navbar/>
-    <Outlet/>
-    <Footer />
-    
-</>
-  )
-}
+    const location = useLocation();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
+    return (
+        <>
+            <Header />
+            <Navbar />
+            <Outlet />
+            <Footer />
+        </>
+    );
+};
 
-export default HomeLayout
+export default HomeLayout;

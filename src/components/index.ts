@@ -26,3 +26,4 @@ export {default as NewsBubble} from './NewsBubble'
 
 export {default as SpaceXLauncher} from './SpaceXLauncher'
 export {default as WebbLauncher} from './WebbLauncher'
+export {default as PaginationContainer} from './PaginationContainer'

@@ -32,6 +32,7 @@ export const newsFetch = async (): Promise<News[] | null> => {
         });
         return response.data.results;
     } catch (error) {
+        /* eslint-disable-next-line no-console */
         console.log(error);
         return null;
     }
@@ -41,9 +42,11 @@ export const imageryFetch = async (): Promise<WebbImage[] | null> => {
         const response = await webbCustomFetch.get<WebbImagesResponse>("", {
             params: imagesParams,
         });
-        return response.data.body;
+        return response.data.body ?? null;
     } catch (error) {
+        /* eslint-disable-next-line no-console */
         console.log(error);
+        return null;
     }
 };
 
@@ -56,6 +59,7 @@ export const webbPageLoader: LoaderFunction =
             ]);
             return { news, imagery };
         } catch (error) {
+            /* eslint-disable-next-line no-console */
             console.log(error);
             return null;
         }
